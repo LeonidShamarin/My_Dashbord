@@ -5,32 +5,47 @@ import TickerDropdown from "./TickerDropdown";
 import { Company } from "../types";
 import { getCompanyByTicker } from "../services/api";
 
+const ELEMENT_MAP: { [id: string]: string } = {
+  a: "Company info",
+  b: "Company info",
+  c: "Company info",
+};
+
 const Dashboard: React.FC = () => {
-  const [selectedCompany, setSelectedCompany] = useState<Company | null>(null);
+  const [companies, setCompanies] = useState<{ [id: string]: Company | null }>({
+    a: null,
+    b: null,
+    c: null,
+  });
 
-  const handleTickerChange = async (ticker: string) => {
+  const handleTickerChange = async (ticker: string, id: string) => {
     const company = await getCompanyByTicker(ticker);
-
-    setSelectedCompany(company ?? null);
+    setCompanies((prev) => ({ ...prev, [id]: company }));
   };
 
   return (
     <div className="h-screen flex flex-col">
-      <div className="p-4">
-        <TickerDropdown onTickerChange={handleTickerChange} />
-      </div>
       <div className="flex-1">
         <Mosaic<string>
-          renderTile={(id) => (
-            <CompanyInfoWidget company={selectedCompany || ({} as Company)} />
+          renderTile={(id, path) => (
+            <div className="border p-4 pb-10">
+              <div className="top">
+                <TickerDropdown
+                  onTickerChange={(ticker) => handleTickerChange(ticker, id)}
+                />
+                <h2 className="pt-1 pl-3 ">{ELEMENT_MAP[id]}</h2>
+              </div>
+
+              <CompanyInfoWidget company={companies[id]} />
+            </div>
           )}
           initialValue={{
             direction: "row",
-            first: "CompanyInfo1",
+            first: "a",
             second: {
               direction: "column",
-              first: "CompanyInfo2",
-              second: "CompanyInfo3",
+              first: "b",
+              second: "c",
             },
           }}
         />

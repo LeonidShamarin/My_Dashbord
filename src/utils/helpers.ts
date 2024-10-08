@@ -1,13 +1,4 @@
-import { Company, Security } from '../types';
-
-export const formatPhoneNumber = (phoneNumber: string): string => {
-  const cleaned = ('' + phoneNumber).replace(/\D/g, '');
-  const match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
-  if (match) {
-    return '(' + match[1] + ') ' + match[2] + '-' + match[3];
-  }
-  return phoneNumber;
-};
+import { Company } from '../types';
 
 export const getCompanyFullAddress = (company: Company): string => {
   const parts = [
@@ -17,10 +8,7 @@ export const getCompanyFullAddress = (company: Company): string => {
     company.hq_state,
     company.hq_address_postal_code,
     company.hq_country
-  ];
-  return parts.filter(Boolean).join(', ');
-};
-
-export const getSecurityDisplayName = (security: Security): string => {
-  return `${security.name} (${security.ticker})`;
+  ].filter(Boolean);
+  
+  return parts.join(', ');
 };

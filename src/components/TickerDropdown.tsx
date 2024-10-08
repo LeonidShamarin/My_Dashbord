@@ -13,8 +13,8 @@ const TickerDropdown: React.FC<TickerDropdownProps> = ({ onTickerChange }) => {
 
   useEffect(() => {
     const fetchSecurities = async () => {
-      const securities = await getSecurities();
-      setSecurities(securities);
+      const fetchedSecurities = await getSecurities();
+      setSecurities(fetchedSecurities);
     };
     fetchSecurities();
   }, []);
@@ -29,10 +29,13 @@ const TickerDropdown: React.FC<TickerDropdownProps> = ({ onTickerChange }) => {
     <HTMLSelect
       value={selectedTicker}
       onChange={handleTickerChange}
-      options={securities.map((security) => ({
-        label: security.name,
-        value: security.ticker,
-      }))}
+      options={[
+        { label: "Select framework...", value: "" },
+        ...securities.map((security) => ({
+          label: `${security.name} (${security.ticker})`,
+          value: security.ticker,
+        })),
+      ]}
     />
   );
 };
