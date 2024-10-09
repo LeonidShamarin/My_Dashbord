@@ -19,7 +19,7 @@ This project is a web application built with **React** and **TypeScript** that d
 
 ## Development
 
-1. Clone the repository: `git clone https://github.com/your-username/my-dashboard.git`
+1. Clone the repository: `git clone https://github.com/LeonidShamarin/my-dashboard.git`
 2. Install dependencies: `npm install`
 3. Start the development server: `npm start`
 4. Open the application in your browser: `http://localhost:3000`
