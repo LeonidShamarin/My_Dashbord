@@ -1,6 +1,21 @@
 # My Dashboard
 
-This is a React application for displaying company information.
+## Project Description
+
+This project is a web application built with **React** and **TypeScript** that displays company information. The application uses the **React Mosaic** library for creating a responsive layout and **Tailwind CSS** for styling. Data about the companies is loaded dynamically from two JSON files: `securities.json` and `companies-lookup.json`.
+
+## Features
+
+- Display company information in three separate windows.
+- Dynamically load data from JSON files.
+- Responsive design that allows resizing of windows.
+
+## Technologies
+
+- **React**: A JavaScript library for building user interfaces.
+- **TypeScript**: A strongly typed programming language that builds on JavaScript.
+- **React Mosaic**: A library for creating responsive, flexible layouts.
+- **Tailwind CSS**: A utility-first CSS framework for rapid UI development.
 
 ## Development
 
